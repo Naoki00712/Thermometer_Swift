@@ -14,11 +14,15 @@ class ViewController: UIViewController {
         // アプリがロードされた時に実行させたい処理を書きます
 
         let url: URL = URL(string: "http://ambidata.io/api/v2/channels/42764/data?&readKey=b86f22d78098548d&n=1")!
-        let task: URLSessionTask = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
-            // コンソールに出力
-            print("data: \(String(describing: data))")
-            print("response: \(String(describing: response))")
-            print("error: \(String(describing: error))")
+        let task: URLSessionTask  = URLSession.shared.dataTask(with: url, completionHandler: {data, response, error in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
+                print(json)
+                print("count: \(json.count)")
+            }
+            catch {
+                print(error)
+            }
         })
         task.resume()
     }
