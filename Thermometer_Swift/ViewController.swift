@@ -18,7 +18,7 @@ class ViewController: UIViewController {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! [Any]
                 print(json)
-                print("count: \(json.count)")
+                //print("count: \(json.count)")
             }
             catch {
                 print(error)
